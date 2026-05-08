@@ -5,6 +5,9 @@ namespace TrainTicketManagement.ViewModels
 {
     public class CreateTrainViewModel
     {
+        // Id for Edit (0 = new train)
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Train name is required")]
         public string TrainName { get; set; } = string.Empty;
 
