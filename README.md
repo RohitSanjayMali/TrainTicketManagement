@@ -13,7 +13,7 @@ A full-featured Train Ticket Booking web application built with **ASP.NET Core 9
 | 📜 Booking History | View & cancel your own bookings |
 | ❌ Cancel Booking | Cancel confirmed bookings |
 | 🔐 Authentication | Register/Login with ASP.NET Core Identity |
-| 👑 Admin Panel | Dashboard with stats, Add Trains, View all bookings |
+| 👑 Admin Panel | Dashboard with stats, Add/Edit/Delete Trains, View all bookings |
 
 ## 🛠️ Tech Stack
 
@@ -36,7 +36,7 @@ A full-featured Train Ticket Booking web application built with **ASP.NET Core 9
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/yourusername/TrainTicketManagement.git
+git clone https://github.com/RohitSanjayMali/TrainTicketManagement.git
 cd TrainTicketManagement
 
 # 2. Run migrations
@@ -47,7 +47,7 @@ dotnet run
 ```
 
 ### Default Admin Credentials
-- **Email:** `admin@trainms.com`
+- **Email:** `admin@trainticket.com`
 - **Password:** `Admin@123`
 
 ## 📸 Screenshots
@@ -56,7 +56,7 @@ dotnet run
 
 ## 👤 Author
 
-**Your Name** — [GitHub Profile](https://github.com/yourusername)
+**Rohit Sanjay Mali** — [GitHub Profile](https://github.com/RohitSanjayMali)
 
 ---
 *Built as a resume project to demonstrate ASP.NET Core MVC, EF Core, Identity, and PDF generation.*
