@@ -1,0 +1,150 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- Hero Section -->
+<div class="p-5 mb-4 text-white shadow-lg hero-section">
+
+    <div class="container-fluid py-4 text-center">
+
+        <h1 class="display-5 fw-bold">
+
+            <i class="bi bi-train-front me-2"></i>
+            Train Ticket Management System
+
+        </h1>
+
+        <p class="col-md-8 mx-auto fs-5 mt-3">
+
+            Book train tickets easily.
+            Check PNR status,
+            view your booking history,
+            and download PDF tickets —
+            all in one place.
+
+        </p>
+
+        <a asp-controller="Train"
+           asp-action="Search"
+           class="btn btn-light btn-lg mt-3 me-2 shadow hero-btn">
+
+            <i class="bi bi-search me-1"></i>
+            Search Trains
+
+        </a>
+
+        @if (!User.Identity?.IsAuthenticated ?? true)
+        {
+            <a asp-controller="Auth"
+               asp-action="Register"
+               class="btn btn-outline-light btn-lg mt-3 shadow hero-btn">
+
+                <i class="bi bi-person-plus me-1"></i>
+                Register Now
+
+            </a>
+        }
+
+    </div>
+
+</div>
+
+<!-- Feature Cards -->
+<div class="row g-4 mt-2">
+
+    <div class="col-md-4">
+
+        <div class="card h-100 border-0 shadow-sm feature-card">
+
+            <div class="card-body text-center p-4">
+
+                <div class="fs-1 text-primary mb-3">
+                    <i class="bi bi-search"></i>
+                </div>
+
+                <h5 class="card-title">
+                    Search Trains
+                </h5>
+
+                <p class="card-text text-muted">
+                    Find trains between any two stations.
+                    View available seats and fares.
+                </p>
+
+                <a asp-controller="Train"
+                   asp-action="Search"
+                   class="btn btn-primary btn-sm rounded-pill px-4">
+                    Search Now
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card h-100 border-0 shadow-sm feature-card">
+
+            <div class="card-body text-center p-4">
+
+                <div class="fs-1 text-success mb-3">
+                    <i class="bi bi-ticket-perforated"></i>
+                </div>
+
+                <h5 class="card-title">
+                    PNR Status
+                </h5>
+
+                <p class="card-text text-muted">
+                    Track your booking using your PNR number anytime, anywhere.
+                </p>
+
+                <a asp-controller="Booking"
+                   asp-action="PNRStatus"
+                   class="btn btn-success btn-sm rounded-pill px-4">
+
+                    Check PNR
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card h-100 border-0 shadow-sm feature-card">
+
+            <div class="card-body text-center p-4">
+
+                <div class="fs-1 text-warning mb-3">
+                    <i class="bi bi-file-earmark-pdf"></i>
+                </div>
+
+                <h5 class="card-title">
+                    Download Ticket
+                </h5>
+
+                <p class="card-text text-muted">
+                    Download your confirmed ticket as a PDF for easy reference.
+                </p>
+
+                <a asp-controller="Booking"
+                   asp-action="History"
+                   class="btn btn-warning btn-sm rounded-pill px-4">
+
+                    My Bookings
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

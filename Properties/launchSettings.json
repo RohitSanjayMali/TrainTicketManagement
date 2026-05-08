@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "TrainTicketManagement": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:50387;http://localhost:50388"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+## VisualStudio
+.vs/
+*.user
+*.suo
+
+## Build Output
+[Bb]in/
+[Oo]bj/
+
+## Publish
+publish/
+*.pubxml
+*.pubxml.user
+
+## Packages
+*.nupkg
+packages/
+
+## Logs
+*.log
+logs/
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Secrets — IMPORTANT: in production move to environment variables
+# appsettings.Development.json  # uncomment if it has real secrets

@@ -1,0 +1,59 @@
+@model CreateTrainViewModel
+@{
+    ViewData["Title"] = "Add Train";
+}
+
+<h2 class="mb-4"><i class="bi bi-plus-circle me-2"></i>Add New Train</h2>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body p-4">
+        <form asp-action="CreateTrain" asp-controller="Admin" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2"></div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="TrainName" class="form-label fw-semibold">Train Name</label>
+                    <input asp-for="TrainName" class="form-control" placeholder="e.g. Rajdhani Express" />
+                    <span asp-validation-for="TrainName" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="TrainNumber" class="form-label fw-semibold">Train Number</label>
+                    <input asp-for="TrainNumber" class="form-control" placeholder="e.g. 12951" />
+                    <span asp-validation-for="TrainNumber" class="text-danger small"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="FromStationId" class="form-label fw-semibold">From Station</label>
+                    <select asp-for="FromStationId" asp-items="Model.Stations" class="form-select">
+                        <option value="">-- Select Source --</option>
+                    </select>
+                    <span asp-validation-for="FromStationId" class="text-danger small"></span>
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="ToStationId" class="form-label fw-semibold">To Station</label>
+                    <select asp-for="ToStationId" asp-items="Model.Stations" class="form-select">
+                        <option value="">-- Select Destination --</option>
+                    </select>
+                    <span asp-validation-for="ToStationId" class="text-danger small"></span>
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="TotalSeats" class="form-label fw-semibold">Total Seats</label>
+                    <input asp-for="TotalSeats" type="number" class="form-control" min="1" />
+                    <span asp-validation-for="TotalSeats" class="text-danger small"></span>
+                </div>
+                <div class="col-md-2">
+                    <label asp-for="PricePerSeat" class="form-label fw-semibold">Price (₹)</label>
+                    <input asp-for="PricePerSeat" type="number" class="form-control" min="1" />
+                    <span asp-validation-for="PricePerSeat" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-primary px-4">
+                    <i class="bi bi-check-circle me-1"></i>Add Train
+                </button>
+                <a asp-action="Dashboard" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

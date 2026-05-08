@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = "PNR Status";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="card border-0 shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">🔍 Check PNR Status</h5>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="PNRStatus" method="post">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-3"></div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Enter PNR Number</label>
+                        <input type="text"
+                               name="pnr"
+                               class="form-control form-control-lg"
+                               placeholder="e.g. TR4A2B9C1D"
+                               style="text-transform: uppercase;" />
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        🔍 Check Status
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

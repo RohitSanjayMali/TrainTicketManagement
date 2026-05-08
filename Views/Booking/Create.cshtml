@@ -1,0 +1,112 @@
+@model BookingViewModel
+@{
+    ViewData["Title"] = "Book Ticket";
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-7">
+        <div class="card border-0 shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-ticket-perforated me-2"></i>Book Ticket</h5>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Create" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" asp-for="TrainId" />
+
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-3"></div>
+
+                    <h6 class="fw-bold mb-3 text-secondary">Passenger Details</h6>
+
+                    <div id="passengerList">
+                        @for (int i = 0; i < Model.Passengers.Count; i++)
+                        {
+                            <div class="passenger-item border rounded p-3 mb-3 bg-light">
+                                <h6 class="text-primary mb-2">Passenger @(i + 1)</h6>
+                                <div class="row g-2">
+                                    <div class="col-md-5">
+                                        <label class="form-label fw-semibold small">Full Name</label>
+                                        <input asp-for="Passengers[i].Name"
+                                               class="form-control"
+                                               placeholder="Full Name" />
+                                        <span asp-validation-for="Passengers[i].Name" class="text-danger small"></span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label fw-semibold small">Age</label>
+                                        <input asp-for="Passengers[i].Age"
+                                               type="number"
+                                               class="form-control"
+                                               placeholder="Age"
+                                               min="1" max="120" />
+                                        <span asp-validation-for="Passengers[i].Age" class="text-danger small"></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-semibold small">Gender</label>
+                                        <select asp-for="Passengers[i].Gender" class="form-select">
+                                            <option value="">-- Select --</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <span asp-validation-for="Passengers[i].Gender" class="text-danger small"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <button type="button" class="btn btn-outline-secondary mb-3" id="addPassenger">
+                        <i class="bi bi-plus-circle me-1"></i>Add Passenger
+                    </button>
+
+                    <button type="submit" class="btn btn-success w-100">
+                        <i class="bi bi-check-circle me-1"></i>Confirm Booking
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let count = @Model.Passengers.Count;
+
+        document.getElementById('addPassenger').addEventListener('click', function () {
+            const idx = count++;
+            const div = document.createElement('div');
+            div.className = 'passenger-item border rounded p-3 mb-3 bg-light';
+            div.innerHTML = `
+                <div class="d-flex justify-content-between mb-2">
+                    <h6 class="text-primary mb-0">Passenger ${idx + 1}</h6>
+                    <button type="button" class="btn btn-sm btn-outline-danger remove-btn">Remove</button>
+                </div>
+                <div class="row g-2">
+                    <div class="col-md-5">
+                        <label class="form-label fw-semibold small">Full Name</label>
+                        <input name="Passengers[${idx}].Name" class="form-control" placeholder="Full Name" required />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold small">Age</label>
+                        <input name="Passengers[${idx}].Age" type="number" class="form-control" placeholder="Age" min="1" max="120" required />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold small">Gender</label>
+                        <select name="Passengers[${idx}].Gender" class="form-select" required>
+                            <option value="">-- Select --</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>`;
+            document.getElementById('passengerList').appendChild(div);
+        });
+
+        document.getElementById('passengerList').addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-btn')) {
+                e.target.closest('.passenger-item').remove();
+            }
+        });
+    </script>
+}

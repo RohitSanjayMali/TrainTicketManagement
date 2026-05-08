@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
+            🚂 RailBook
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Train" asp-action="Search">Search Trains</a>
+                </li>
+
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Booking" asp-action="PNRStatus">PNR Status</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Booking" asp-action="History">My Bookings</a>
+                    </li>
+                }
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-warning fw-bold"
+                           asp-controller="Admin" asp-action="Dashboard">
+                            ⚙️ Admin
+                        </a>
+                    </li>
+                }
+            </ul>
+
+            <div class="d-flex gap-2 align-items-center">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <span class="text-white small me-1">👤 @User.Identity.Name</span>
+                    <a asp-controller="Auth" asp-action="Logout"
+                       class="btn btn-sm btn-outline-light">Logout</a>
+                }
+                else
+                {
+                    <a asp-controller="Auth" asp-action="Login"
+                       class="btn btn-sm btn-outline-light">Login</a>
+                    <a asp-controller="Auth" asp-action="Register"
+                       class="btn btn-sm btn-light text-primary fw-bold">Register</a>
+                }
+            </div>
+        </div>
+    </div>
+</nav>
